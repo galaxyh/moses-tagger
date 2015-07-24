@@ -159,6 +159,7 @@ public class TreeTagger implements Tagger {
                 pw.flush();
 
                 String content = baos.toString(StandardCharsets.UTF_8.name());
+                content = content.trim() + "\n";
                 outString += content;
             }
 
