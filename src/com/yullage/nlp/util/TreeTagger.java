@@ -43,6 +43,8 @@ public class TreeTagger implements Tagger {
     private Map<String, String> adjComparative = new HashMap<String, String>();
     private Map<String, String> adjSuperlative = new HashMap<String, String>();
 
+    private String treePrintOptions;
+
     public TreeTagger(Config config) {
         this.config = config;
 
@@ -78,11 +80,17 @@ public class TreeTagger implements Tagger {
                 e.printStackTrace();
             }
         }
+
+        if (config.treeStem) {
+            treePrintOptions = "stem,removeTopBracket";
+        } else {
+            treePrintOptions = "removeTopBracket";
+        }
     }
 
     @Override
     public void tagSingleLine(String sentence, Writer writer) {
-        TreePrint treePrint = new TreePrint("oneline", "stem,removeTopBracket", tlp);
+        TreePrint treePrint = new TreePrint("oneline", treePrintOptions, tlp);
         try {
             printTree(writer, treePrint, sentence);
 
@@ -107,7 +115,7 @@ public class TreeTagger implements Tagger {
         BufferedReader br = new BufferedReader(reader);
         BufferedWriter bw = new BufferedWriter(writer);
 
-        TreePrint treePrint = new TreePrint("oneline", "stem,removeTopBracket", tlp);
+        TreePrint treePrint = new TreePrint("oneline", treePrintOptions, tlp);
 
         try {
             String sentence;

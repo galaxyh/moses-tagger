@@ -43,6 +43,9 @@ public class Config {
 	@Parameter(names = "-factorList", description = "Factor list. Available factors are \"surface\", \"lemma\", \"pos\" and \"lemma-pos\". The order indicates the output factor sequence.")
 	public String factorList = "surface lemma pos";
 
+	@Parameter(names = "-treeStem", description = "Use stem in tree form.")
+	public boolean treeStem = false;
+
 	@Parameter(names = "-adjFormDictionary", description = "ADJ forms dictionary file name.")
 	public String adjFormDictionary;
 
